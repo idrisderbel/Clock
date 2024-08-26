@@ -5,6 +5,13 @@ font-family: Gotham Rounded,sans-serif;
 
 body {
     background: linear-gradient(to right, hsl(200, 100%, 50%), hsl(175, 100%, 50%));
+    /* horizantal centering */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* vertical centering */
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 .clock {
@@ -36,3 +43,52 @@ body {
 .clock .number9 { --rotation: 270deg; }
 .clock .number10 { --rotation: 300deg; }
 .clock .number11 { --rotation: 330deg; }
+
+
+.clock .hand {
+    --rotation:0;
+    position:absolute;
+    bottom:50%;
+    left:50%;
+    width: 10px;
+    height: 50%;
+    border: 1px solid white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: black;
+    transform-origin: bottom;
+    z-index: 10;
+    transform: translateX(-50%) rotate(calc(var(--rotation) *1deg));
+}
+
+/* Insert the round black circle which is in the center of each .clock[class] */
+.clock::after{
+    content:'';
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: black;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 11;
+    border-radius: 50%;
+}
+
+.clock .hand.second {
+    width: 3px;
+    height: 45%;
+    background-color: red;
+}
+
+.clock .hand.minute {
+    width: 7px;
+    height: 40%;
+    background-color: blueviolet;
+}
+
+.clock .hand.hour {
+    width: 10px;
+    height: 35%;
+    background-color: blue;
+}
